@@ -8,6 +8,7 @@
  * 
  * @license GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author  Michael Klier <chi@chimeric.de>
+ * @author  i-net /// software GmbH <tools@inetsoftware.de>
  */
 
 if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../').'/');
@@ -20,21 +21,6 @@ if(!defined('DW_LF')) define('DW_LF',"\n");
  * need to inherit from this class
  */
 class syntax_plugin_clearfloat extends DokuWiki_Syntax_Plugin {
-
-
-    /**
-     * General Info
-     */
-    function getInfo(){
-        return array(
-            'author' => 'Michael Klier',
-            'email'  => 'chi@chimeric.de',
-            'date'   => @file_get_contents(DOKU_PLUGIN.'clearfloat/VERSION'),
-            'name'   => 'Clearfloat',
-            'desc'   => 'Clears the floating of elements such as images.',
-            'url'    => 'http://dokuwiki.org/plugin:clearfloat'
-        );
-    }
 
     /**
      * Syntax Type
@@ -56,14 +42,14 @@ class syntax_plugin_clearfloat extends DokuWiki_Syntax_Plugin {
     /**
      * Handler to prepare matched data for the rendering process
      */
-    function handle($match, $state, $pos, &$handler){
+    function handle($match, $state, $pos, Doku_Handler $handler){
         return array();
     }
 
     /**
      * Handles the actual output creation.
      */
-    function render($mode, &$renderer, $data) {
+    function render($mode, Doku_Renderer $renderer, $data) {
         if($mode == 'xhtml'){
             $renderer->doc .= '<div class="clearer"></div>' . DW_LF;
             return true;
